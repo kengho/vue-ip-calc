@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "ip": "^1.1.5",
     "vue": "^2.5.17"
   },
   "devDependencies": {

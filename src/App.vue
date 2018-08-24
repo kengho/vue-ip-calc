@@ -1,28 +1,29 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <IpCalc />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import IpCalc from './components/IpCalc.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
-  }
+    IpCalc,
+  },
+  created() {
+    document.title = "IP Calc";
+  },
 }
 </script>
 
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-size: 18px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 32px;
 }
 </style>

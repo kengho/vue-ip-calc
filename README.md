@@ -1,21 +1,13 @@
-# vue-ip-calc
+# IP Calc
 
-## Project setup
-```
-npm install
-```
+## Summary
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Simple [vuejs](https://vuejs.org/)-powered app for getting info from IPv4 CIDR ([ip](https://www.npmjs.com/package/ip) nodejs package as "backend"). Bootstrapped via `vue create vue-ip-calc`.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Live
 
-### Lints and fixes files
-```
-npm run lint
-```
+[https://kengho.tech/ipcalc](https://kengho.tech/ipcalc/)
+
+## License
+
+Spreadsheet is distributed under the MIT-LICENSE.
