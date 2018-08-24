@@ -15,6 +15,9 @@
             <template v-if="cidrProp.key === 'numHosts'">
               {{Math.floor(cidr[cidrProp.key])}}
             </template>
+            <template v-else-if="cidrProp.key === 'networkAddress'">
+              {{`${cidr.networkAddress}/${cidr.subnetMaskLength}`}}
+            </template>
             <template v-else>
               {{cidr[cidrProp.key]}}
             </template>
