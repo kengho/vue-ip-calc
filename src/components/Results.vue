@@ -13,7 +13,7 @@
               unpleasant, so we round it to 0.
             -->
             <template v-if="cidrProp.key === 'numHosts'">
-              {{Math.floor(cidr[cidrProp.key])}}
+              {{Math.floor(cidr.numHosts)}}
             </template>
             <template v-else-if="cidrProp.key === 'networkAddress'">
               {{`${cidr.networkAddress}/${cidr.subnetMaskLength}`}}
