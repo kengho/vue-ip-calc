@@ -1,6 +1,6 @@
 <template>
   <div class="ip-calc-wrapper">
-    <div>
+    <div class="ip-calc">
       <input
         autofocus
         class="request-input"
@@ -39,9 +39,15 @@ input {
 .ip-calc-wrapper {
   display: flex;
   justify-content: center;
+  min-width: 100%;
+}
+
+.ip-calc {
+  /* Test: request "255.255.255.255/32" should fit without size throbbing. */
+  min-width: 16em;
 }
 
 .request-input {
-  max-width: 16em;
+  width: 100%;
 }
 </style>
