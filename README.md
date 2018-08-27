@@ -6,7 +6,7 @@ Simple [vuejs](https://vuejs.org/)-powered app for getting info from IPv4 CIDR (
 
 ## Live
 
-[https://kengho.tech/ipcalc](https://kengho.tech/ipcalc/)
+[https://ipcalc.kengho.tech](https://ipcalc.kengho.tech)
 
 ## License
 
