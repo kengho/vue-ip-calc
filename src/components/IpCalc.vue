@@ -4,7 +4,7 @@
       <input
         autofocus
         class="request-input"
-        placeholder="e.g. 192.168.0.0/24"
+        :placeholder="placeholder"
         v-on:input="request = $event.target.value"
       />
       <Results :request="request" />
@@ -19,6 +19,9 @@ export default {
   name: 'IpCalc',
   components: {
     Results,
+  },
+  props: {
+    placeholder: String,
   },
   data: function () {
     return {

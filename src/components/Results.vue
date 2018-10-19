@@ -1,10 +1,10 @@
 <template>
-  <div class="ip-calc-results" >
-    <template v-if="cidr">
-      <template v-for="cidrProp in cidrProps" >
-        <div class="results-row" :key="cidrProp.key">
+  <div class="ip-calc-results">
+    <template v-if="networkData">
+      <template v-for="networkProp in this.networkProps">
+        <div class="results-row" :key="networkProp.key">
           <div class="results-cell key">
-            {{cidrProp.name}}:
+            {{networkProp.name}}:
           </div>
           <div class="results-cell value">
             <!--
@@ -12,17 +12,16 @@
               like 1.262177448353619e-29 which is
               unpleasant, so we round it to 0.
             -->
-            <template v-if="cidrProp.key === 'numHosts'">
-              {{Math.floor(cidr.numHosts)}}
+            <template v-if="networkProp.key === 'numHosts'">
+              {{Math.floor(networkData.numHosts)}}
             </template>
-            <template v-else-if="cidrProp.key === 'networkAddress'">
-              {{`${cidr.networkAddress}/${cidr.subnetMaskLength}`}}
+            <template v-else-if="networkProp.key === 'networkAddress'">
+              {{`${networkData.networkAddress}/${networkData.subnetMaskLength}`}}
             </template>
             <template v-else>
-              {{cidr[cidrProp.key]}}
+              {{networkData[networkProp.key]}}
             </template>
           </div>
-
         </div>
       </template>
     </template>
@@ -30,7 +29,7 @@
 </template>
 
 <script>
-import { cidrSubnet } from 'ip'
+import { cidrSubnet, subnet } from 'ip'
 
 export default {
   name: 'Results',
@@ -39,7 +38,7 @@ export default {
   },
   data: () => (
     {
-      cidrProps: [
+      networkProps: [
         { key: 'networkAddress', name: 'Network' },
         { key: 'firstAddress', name: 'First host' },
         { key: 'lastAddress', name: 'Last host' },
@@ -50,13 +49,34 @@ export default {
     }
   ),
   computed: {
-    cidr: function () {
-      try {
-        // https://www.npmjs.com/package/ip
-        return cidrSubnet(this.request)
-      } catch (e) {
+    networkData: function () {
+      if (!this.request) {
         return null
       }
+
+      let result
+      const matchCidr = this.request.match(/^\d+\.\d+\.\d+\.\d+\/\d+$/)
+      if (matchCidr) {
+        try {
+          // https://www.npmjs.com/package/ip
+          result = cidrSubnet(this.request)
+        } catch (e) {
+          // TODO: print error.
+        }
+      } else {
+        const matchDotted = this.request.match(/^(\d+\.\d+\.\d+\.\d+)\/(\d+\.\d+\.\d+\.\d+)$/)
+        if (matchDotted) {
+          const address = matchDotted[1]
+          const netmask = matchDotted[2]
+          try {
+            result = subnet(address, netmask)
+          } catch (e) {
+            // TODO: print error.
+          }
+        }
+      }
+
+      return result
     },
   },
 }
