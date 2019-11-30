@@ -40,6 +40,7 @@ export default {
     {
       networkProps: [
         { key: 'networkAddress', name: 'Network' },
+        { key: 'subnetMask', name: 'Subnet mask' },
         { key: 'firstAddress', name: 'First host' },
         { key: 'lastAddress', name: 'Last host' },
         { key: 'broadcastAddress', name: 'Broadcast' },
